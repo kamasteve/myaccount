@@ -28,7 +28,7 @@
               <div class='col-12 col-md col-lg-9'>
                 </div>
               <div class='kamah'>
-                <h1> Account Summary </h1>
+                Account Summary 
               </div>
               <div class="smart_table">
                 <t t-foreach="companies1" t-as="company1">
@@ -46,7 +46,7 @@
                       <td>Overdue Charges</td>
                       <form t-attf-action="/wallet/balance/Overdue" method="post">
 					<td>
-					<t t-set="Overdue" t-value="company1['sum']" />
+					<t t-set="Overdue" t-value="company1['a']" />
                         <span t-esc="Overdue"/>
             <input type="hidden" name="Overdue" t-att-value="Overdue" />
 						<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
@@ -54,30 +54,40 @@
 
                      <td> <button type="submit" id="add_payment" class="btn btn-primary pull-right" style="max-height:50px;"><i class="fa fa-arrow-circle-right"/><span class='d-none d-md-inline'> Pay Now</span></button></td>
                 </form>
-                <t t-foreach="payment" t-as="payment">
+
 
                       <td>Last Payment Date</td>
-                      <td><span t-esc="payment.payment_date"/></td>
-                    </t>
+                      <td><span t-esc="company1['c']"/></td>
+
                     </tr>
                     <tr class="active">
                       <td>Current Charges</td>
-                      <td></td>
-                      <td><a
-                           title="Pay now" aria-label="Pay now" class="btn btn-sm btn-primary" role="button">
-                          <i class="fa fa-arrow-circle-right"/><span class='d-none d-md-inline'> Pay Now</span>
-                      </a></td>
+                      <form t-attf-action="/wallet/balance/Overdue" method="post">
+					<td>
+					<t t-set="Overdue" t-value="company1['a']" />
+                        <span t-esc="Overdue"/>
+            <input type="hidden" name="Overdue" t-att-value="Overdue" />
+						<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+					</td>
+
+                     <td> <button type="submit" id="add_payment" class="btn btn-primary pull-right" style="max-height:50px;"><i class="fa fa-arrow-circle-right"/><span class='d-none d-md-inline'> Pay Now</span></button></td>
+                </form>
                       <td>Last Payement Amount</td>
-                      <td></td>
+                      <td><span t-esc="company1['d']"/></td>
 
                     </tr>
                     <tr class="active">
                       <td>Total Amount Due</td>
-                      <td><t t-set="balance" t-value="minimum_wallet_balance"/></td>
-                      <td><a
-                           title="Pay now" aria-label="Pay now" class="btn btn-sm btn-primary" role="button">
-                          <i class="fa fa-arrow-circle-right"/><span class='d-none d-md-inline'> Pay Now</span>
-                      </a></td>
+                      <form t-attf-action="/wallet/balance/Overdue" method="post">
+					<td>
+					<t t-set="Overdue" t-value="company1['a']" />
+                        <span t-esc="Overdue"/>
+            <input type="hidden" name="Overdue" t-att-value="Overdue" />
+						<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+					</td>
+
+                     <td> <button type="submit" id="add_payment" class="btn btn-primary pull-right" style="max-height:50px;"><i class="fa fa-arrow-circle-right"/><span class='d-none d-md-inline'> Pay Now</span></button></td>
+                </form>
                       <td></td>
                       <td></td>
 
@@ -98,42 +108,24 @@
                 </table>
               </t>
               </div>
-                         <t t-foreach="companies" t-as="company">
+                         <t t-foreach="companies" t-as="payment1">
                            <table class="table-striped table">
                              <tr>
                                <td>Phone:</td>
-                               <td><span t-esc="company"/></td>
+                               <td><span t-esc="payment1['payment_date']"/></td>
                              </tr>
                              <tr>
                                <td>E-mail:</td>
-                               <td><span t-esc="company.partner_id"/></td>
+                               <td><span t-esc="payment1"/></td>
                              </tr>
                              <tr>
                                <td>Address:</td>
                                <td>
-                                 <span t-esc="company.amount_total_signed"/> <span t-esc="company.residual_signed"/><br/>
-                                 <span t-esc="company.residual_signed"/> <span t-esc="company.residual_signed"/>
+                                 <span t-esc="payment1"/>
                                </td>
                              </tr>
                            </table>
                          </t>
-                              <t t-foreach="payment" t-as="payment">
-                                <h4><span t-esc="payment"/></h4>
-                                <table class="table-striped table">
-                                  <tr>
-                                    <td>Phone:</td>
-                                    <td><span t-esc="payment"/></td>
-                                    <p><t t-esc="payment"/></p> <!-- print value -->
-                                  </tr>
-                                  <tr>
-                                    <td>E-mail:</td>
-                                    <td><span t-esc="payment"/></td>
-                                  </tr>
-                                  <tr>
-
-                                  </tr>
-                                </table>
-                              </t>
 
           </xpath>
       </template>
